@@ -1,7 +1,7 @@
 version: "3.9"
 services:
-  app:
-    image: converter:latest 
+  app:    
+    image: 127.0.0.1:5000/converter #need to make sure that our own docker registry is up and running on localhost
     build:
       #context: ./ # pointing to directory with dockerfile
       context: ./          
