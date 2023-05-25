@@ -2,9 +2,9 @@ version: "3.9"
 services:
   app:    
     image: 10.14.15.60:5000/converter #need to make sure that our own docker registry is up and running on localhost
-    build:
+    #build: #build is not supported by stack deploy
       #context: ./ # pointing to directory with dockerfile
-      context: ./          
+    #  context: ./          
     ports:
       - 8085:80
     environment:
