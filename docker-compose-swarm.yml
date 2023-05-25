@@ -11,7 +11,7 @@ services:
       - PUID=1000
       - PGID=1000
     volumes:
-      - /var/data/config/hrconvert2/config.php:/var/www/html/HRProprietary/HRConvert2/config.php
+      - /var/data/config/HRConvert2-Docker/config.php:/var/www/html/HRProprietary/HRConvert2/config.php
 # uncomment the below line to expose temporary upload folder as a volume
 #     - ./files:/home/converter:rw
     deploy:
