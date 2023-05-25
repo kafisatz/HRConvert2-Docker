@@ -1,7 +1,10 @@
 version: "3"
 services:
-  app:
-    image: dwaaan/hrconvert2-docker:latest
+  app:    
+    image: converter:latest 
+    build:
+      #context: ./ # pointing to directory with dockerfile
+      context: ./      
     restart: always
     ports:
       - 8085:80

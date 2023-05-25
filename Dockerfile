@@ -1,6 +1,6 @@
 FROM ubuntu:23.04
 
-ARG VERSION=3.1
+ARG VERSION=3.2.9
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 EXPOSE 80 
@@ -29,8 +29,8 @@ RUN mkdir -p $APACHE_RUN_DIR && \
     mkdir -p $APACHE_LOCK_DIR && \
     mkdir -p $APACHE_LOG_DIR
 
-
 COPY uploads.ini /etc/php/7.4/apache2/conf.d/uploads.ini
+
 COPY php.ini /etc/php/8.1/apache2/php.ini
 
 CMD ["/usr/sbin/apache2", "-D", "FOREGROUND"]
@@ -42,7 +42,8 @@ RUN mkdir /var/www/html/HRProprietary && \
     chown -R www-data /home/converter && \
     chgrp -R www-data /home/converter
 
-RUN wget https://github.com/zelon88/HRConvert2/archive/v${VERSION}.zip -O /tmp/HRConvert2.zip && \
+#RUN wget https://github.com/zelon88/HRConvert2/archive/v${VERSION}.zip -O /tmp/HRConvert2.zip && \
+RUN wget https://github.com/kafisatz/HRConvert2/archive/v${VERSION}.zip -O /tmp/HRConvert2.zip && \
     unzip /tmp/HRConvert2.zip -d /tmp/ && \
     mv /tmp/HRConvert2-${VERSION}/* /var/www/html/HRProprietary/HRConvert2 && \
     rm -rf /var/www/html/index.html
