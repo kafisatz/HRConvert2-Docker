@@ -10,7 +10,7 @@ RUN apt-get update -y && \
     add-apt-repository multiverse && \
     apt-get update && \
     apt-get upgrade -yy && \
-    apt-get install -y apache2 default-jre php php-mysql featherpad libapache2-mod-ph php8.1-zip php8.1-gd \ 
+    apt-get install -y apache2 default-jre php php-mysql featherpad libapache2-mod-php php8.1-zip php8.1-gd \ 
                        php-all-dev php-zip php-gd php-curl clamav libreoffice-common nodejs gnuplot \ 
                        unoconv p7zip-full imagemagick ffmpeg tesseract-ocr libreoffice-java-common \ 
                        meshlab dia pandoc poppler-utils zip unzip wget rar libnode-dev unrar npm node-gyp --no-install-recommends  && \
