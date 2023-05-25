@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-ARG VERSION=2.9.2
+ARG VERSION=3.1
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 EXPOSE 80
@@ -10,10 +10,10 @@ RUN apt-get update -y && \
     add-apt-repository multiverse && \
     apt-get update && \
     apt-get upgrade -yy && \
-    apt-get install -y apache2 default-jre php php-mysql \ 
-                       php-all-dev php-zip php-gd php-curl clamav libreoffice-common \ 
-                       unoconv p7zip-full imagemagick ffmpeg tesseract-ocr \ 
-                       meshlab dia pandoc poppler-utils zip unzip wget rar unrar --no-install-recommends && \
+    apt-get install -y apache2 default-jre php php-mysql featherpad libapache2-mod-ph php8.1-zip php8.1-gd \ 
+                       php-all-dev php-zip php-gd php-curl clamav libreoffice-common nodejs gnuplot \ 
+                       unoconv p7zip-full imagemagick ffmpeg tesseract-ocr libreoffice-java-common \ 
+                       meshlab dia pandoc poppler-utils zip unzip wget rar libnode-dev unrar npm node-gyp --no-install-recommends  && \
     apt-get clean && \ 
     rm -rf /var/lib/apt/lists/*
 
@@ -31,6 +31,8 @@ RUN mkdir -p $APACHE_RUN_DIR && \
 
 
 COPY uploads.ini /etc/php/7.4/apache2/conf.d/uploads.ini
+COPY php.ini /etc/php/8.1/apache2/php.ini
+
 CMD ["/usr/sbin/apache2", "-D", "FOREGROUND"]
 
 RUN mkdir /var/www/html/HRProprietary && \
