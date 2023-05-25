@@ -9,4 +9,4 @@ Docker files for HRConvert2 from https://github.com/zelon88/HRConvert2 - A self-
 ## Dockerfile (Building the image yourself)
 1. `git clone https://github.com/kafisatz/HRConvert2-Docker`
 2. `Edit config.php`
-3. `docker compouse up -d`
+3. `docker compose -f docker-compose-nonswarm.yml up -d`

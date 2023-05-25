@@ -1,0 +1,38 @@
+version: "3.9"
+services:
+  app:
+    image: converter:latest 
+    build:
+      #context: ./ # pointing to directory with dockerfile
+      context: ./          
+    ports:
+      - 8085:80
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /var/data/config/hrconvert2/config.php:/var/www/html/HRProprietary/HRConvert2/config.php
+# uncomment the below line to expose temporary upload folder as a volume
+#     - ./files:/home/converter:rw
+    deploy:
+      mode: replicated
+      replicas: 1
+
+      labels:
+        - "traefik.enable=true"
+        - "traefik.docker.network=traefik_public"
+        #we are using file config instead
+        #- "traefik.http.routers.converter.rule=Host(`converter.diro.ch`)"
+        #- "traefik.http.routers.converter.entrypoints=websecure"        
+        #- "traefik.http.routers.converter.tls.certresolver=cloudflare"
+        #- "traefik.http.services.converter.loadbalancer.server.port=8085"
+    networks:
+      - traefik_public       
+networks:  
+  traefik_public:
+    external: true
+  internal:
+    driver: overlay
+    ipam:
+      config:
+        - subnet: 172.16.33.0/24
