@@ -54,7 +54,7 @@ RUN chmod -R 0755 /var/www/html && \
     chgrp -R www-data /var/www/html && \
     rm -rf /var/www/html/HRProprietary/HRConvert2/config.php
 
-COPY config.php /var/www/html/HRProprietary/HRConvert2/config.php
+COPY config.php /var/www/html/HRProprietary/HRConvert2/config.php 
 
 RUN wget https://raw.githubusercontent.com/zelon88/HRConvert2/master/rc.local -O /etc/rc.local && \
     chmod +x /etc/rc.local
